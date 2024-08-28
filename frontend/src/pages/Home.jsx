@@ -31,10 +31,6 @@ const Home = () => {
   return (
     <div className='flex flex-col'>
       
-      <div className='flex justify-between py-8 px-16'>
-        <h1 className='text-4xl font-bold text-center'>Unread Echoes</h1>
-        <button className='py-4 px-6 bg-black font-semibold text-white rounded-xl'>Leave an echo</button>
-      </div>
 
         <div className='flex flex-col justify-center items-center'>
             <div style={{ textAlign: 'center', padding: '20px' }}>
@@ -92,7 +88,6 @@ const Home = () => {
                 />
                 ))}
             </div>  
-            <UnsentProject />      
         
         </div>
 
