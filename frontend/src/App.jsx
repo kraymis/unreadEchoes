@@ -1,27 +1,31 @@
+// src/App.jsx
 import React from 'react';
-import imgMail from './assets/mail.png'
-import MessageCard from './components/MessageCard';
-// import TypingEffect from '../components/TypingEffect';
-
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 function App() {
-  const name = 'John Doe';
-  const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, velit ac ultrices aliquam, justo nunc tincidunt nisl, non tincidunt nunc nisl id nunc. Sed nec nisl nec nisl aliquet tincidunt. Nulla facilisi. Sed euismod, velit ac ultrices aliquam, justo nunc tincidunt nisl, non tincidunt nunc nisl id nunc. Sed nec nisl nec nisl aliquet tincidunt. Nulla facilisi.';
-  const co = 'bg-blue-500';
-
   return (
-    <div className='flex flex-col'>
-      <div className='flex justify-between py-8 px-16'>
-        <h1 className='text-4xl font-bold text-center'>Unread Echoes</h1>
-        <button className='py-4 px-6 bg-black font-semibold text-white rounded-xl'>Leave an echo</button>
-      </div>
-      {/* <TypingEffect /> */}
-    <div className='flex justify-center border-black border-2 bg-slate-500 items-center'>
-      <MessageCard name={name} text={text} color={co} />
-    
-    </div>
+    <Router>
+      <div>
+        {/* Navigation */}
+        {/* <nav className='flex justify-between py-4 px-8 bg-gray-800 text-white'>
+          <Link to="/" className='text-xl'>Home</Link>
+          <div>
+            <Link to="/about" className='mx-4'>About</Link>
+            <Link to="/contact" className='mx-4'>Contact</Link>
+          </div>
+        </nav> */}
 
-    </div>
+        {/* Routes */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
