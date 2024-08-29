@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Set up the base URL for the API
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://unreadechoes-backend.onrender.com/api';
 
 // Function to submit a message
 export const submitMessage = async (name, messageData) => {
