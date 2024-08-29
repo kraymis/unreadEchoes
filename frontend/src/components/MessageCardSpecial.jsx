@@ -16,7 +16,7 @@ const MessageCard = ({ name, text, color }) => {
             </div>
 
             <div style={{ backgroundColor: color }} className={`h-[83%] w-full overflow-auto  py-2 px-4`}>
-            <p className='text-4xl text-white font-normal blur-[0.3px]'>{text}</p>
+            <p className='text-8xl text-black font-medium blur-[0.3px]'>{text}</p>
             </div>
             
             <div className='flex justify-between items-center '>

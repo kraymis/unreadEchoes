@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllMessages, searchMessagesByName } from '../services/api'; // Import the API functions
 import MessageCard from '../components/MessageCard';
+import MessageCardSpecial from '../components/MessageCardSpecial';
 
 const Home = () => {
   const [allMessages, setAllMessages] = useState([]); // Store all messages
@@ -99,49 +100,44 @@ const Home = () => {
     return matchesColor;
   });
 
+
   return (
-    <div className='flex flex-col'>
-      <div className='flex flex-col justify-center items-center'>
-        <div style={{ textAlign: 'center', padding: '20px' }}>
-          <h1 className="text-[6vw] font-semibold">Unread Echoes</h1>
-        </div>
-        <div className='flex flex-col justify-center items-center gap-4'>
-          <p className="text-[2vw] font-normal">A Collection Of Unsent Text Messages To First Loves</p>  
-          <p className="text-[1.4vw] font-normal text-gray-700 mb-8">{filteredMessages.length} posts found.</p>  
-        </div>
+    <div className='flex flex-col items-center px-4'>
+      <div className='text-center py-6 mb-8 px-8'>
+        <h1 className="text-3xl md:text-6xl font-semibold mb-4">Unread Echoes</h1>
+        <p className="text-lg md:text-2xl font-normal mt-2">A Collection Of Unsent Text Messages To First Loves</p>  
+        <p className="text-md md:text-xl font-normal text-gray-700 mt-2">{filteredMessages.length} posts found.</p>  
+      </div>
 
-        {/* Search Bar and Filter */}
-        <div className='flex items-center relative mb-8 gap-1 justify-center  w-[85%]'>
-          <input
-            type='text'
-            placeholder='Search by name...'
-            className='py-2 px-4 border-2 border-black w-[80%] '
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleSearch();
-              }
-            }}
-          />
+      {/* Search Bar and Filter */}
+      <div className='flex flex-col md:flex-row  items-center relative mb-16 gap-4 w-full max-w-[90%] px-8'>
+        <input
+          type='text'
+          placeholder='Search by name...'
+          className='py-2 px-4 border-2 border-black w-full md:w-4/5'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSearch();
+            }
+          }}
+        />
 
-          <button
-            onClick={() => setShowFilterPanel(!showFilterPanel)}
-            className='py-2 px-4 border-2 border-black bg-black text-white w-[18%]'
+        <button
+          onClick={() => setShowFilterPanel(!showFilterPanel)}
+          className='py-2 px-4 border-2 border-black bg-black text-white w-full md:w-1/5'
+        >
+          Filters
+        </button>
+
+        {showFilterPanel && (
+          <div
+            className='absolute top-full left-0 right-0 flex flex-col items-end bg-transparent mx-8  z-50 mt-2'
           >
-            Filters
-          </button>
-
-          {showFilterPanel && (
-            <div
-              className='absolute top-full left-0 right-0 items-end flex flex-col bg-transparent  shadow-lg z-50'
-              style={{ zIndex: 1000 }} // Ensures it appears above other elements
-            >
-              <div className='w-[25%] flex p-4 mt-1 border-4 border-black flex-col font-medium justify-center  overflow-y-auto bg-white'>
-              
-
+            <div className='w-full max-w-xs p-4 border-4 border-black flex flex-col bg-white font-medium overflow-y-auto'>
               {/* Color Filter */}
-              <div className='max-h-40 overflow-y-auto '>
+              <div className='max-h-40 overflow-y-auto'>
                 <p className='mb-2'>Filter by color :</p>
                 <label className='flex items-center font-normal'>
                   <input
@@ -165,13 +161,12 @@ const Home = () => {
                       className='mr-2'
                     />
                     <span
-                      className='w-4 h-4 rounded-full mr-2'
+                      className='w-4 h-4 rounded-full mr-2 border  border-black'
                       style={{ backgroundColor: color.hex }}
                     ></span>
                     {color.name}
                   </label>
                 ))}
-
               </div>
 
               {/* Sort Order Selector */}
@@ -196,23 +191,27 @@ const Home = () => {
               >
                 Update Filters
               </button>
-              </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
 
 
-        {/* Display Messages */}
-        <div className='flex flex-wrap gap-5 w-[85%] justify-start '>
-          {filteredMessages.map((message) => (
-            <MessageCard
-              key={message._id}
-              name={message.collection}
-              text={message.text}
-              color={message.color.hex}
-            />
-          ))}
-        </div>  
+      {/* Display Messages */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-[90%] md:px-8 '>
+        <MessageCardSpecial
+          name=''
+          text='The Unread Echoes'
+          color='#ffffff'
+        />
+        {filteredMessages.map((message) => (
+          <MessageCard
+            key={message._id}
+            name={message.collection}
+            text={message.text}
+            color={message.color.hex}
+          />
+        ))}
       </div>
     </div>
   );

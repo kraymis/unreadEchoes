@@ -5,24 +5,15 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Submit from './pages/Submit';
-import Terms from './pages/Terms';
+import TermsOfService from './pages/TermsOfService';
+import Navbar from './components/NavBar';
 
 function App() {
   return (
     <Router>
-      <div>
+      <div >
         {/* Navigation */}
-        <nav className='flex justify-between py-8 px-16'>
-        <h1 className='text-4xl font-bold text-center'>
-        <Link to="/">Unread Echoes</Link>
-        </h1>
-        
-        <Link to="/submit">
-        <button className='py-4 px-6  font-bold text-black border-4 border-black'>
-        Leave an echo
-        </button>
-        </Link>
-        </nav>
+        <Navbar/>
 
         {/* Routes */}
         <Routes>
@@ -30,7 +21,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/submit" element={<Submit />} />
-          <Route path="/terms" element={<Terms />} />
+          <Route path="/terms" element={<TermsOfService />} />
         </Routes>
       </div>
     </Router>
