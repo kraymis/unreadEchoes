@@ -26,7 +26,7 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <div className={`md:flex md:w-[60%] md:items-center md:justify-center md:space-x-6 ${isOpen ? 'block z-50' : 'hidden'} absolute top-full left-0 w-full bg-white md:relative md:bg-transparent `}>
-        <div className="flex flex-col md:flex-row md:space-x-6 justify-center items-center py-4 md:py-0 w-full shadow-md rounded-xl md:shadow-none md:w-auto">
+        <div className="flex flex-col text-gray-800 md:flex-row md:space-x-6 justify-center items-center py-4 md:py-0 w-full shadow-md rounded-xl md:shadow-none md:w-auto">
           <Link to="/" className="block md:inline-block text-lg py-2 px-4">
             Archive
           </Link>
