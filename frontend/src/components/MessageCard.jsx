@@ -48,7 +48,7 @@ const MessageCard = ({ name, text, color }) => {
   const textColorClass = getTextColor(color);
 
   return (
-    <div className='h-[40vh] md:h-[60vh] w-full p-1 border-4 border-black outline outline-4 outline-white bg-white shadow-xl'>
+    <div className='h-[50vh] md:h-[60vh] w-full p-1 border-4 border-black outline outline-4 outline-white bg-white shadow-xl'>
       <div className='h-[10%] flex justify-between items-center mb-1'>
         <div className='flex justify-between items-center gap-2'>
           <p className='text-white bg-black font-bold text-lg px-2 tracking-wider'>ABC</p>
