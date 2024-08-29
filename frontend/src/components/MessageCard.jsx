@@ -15,7 +15,7 @@ const MessageCard = ({ name, text, color }) => {
                     </div>
             </div>
 
-            <div className={`h-[82%] w-full overflow-auto text-xl p-2 ${color}`}>
+            <div style={{ backgroundColor: color }} className={`h-[82%] w-full overflow-auto text-xl text-white font-medium p-2`}>
             {text}
             </div>
             

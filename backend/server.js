@@ -3,8 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const messageRoutes = require('./routes/messageRoutes');
+const errorHandler = require('./middleware/errorHandler');
+const cors = require('cors');
+
 
 const app = express();
+
+app.use(cors());
 
 // Connect to database
 connectDB();
@@ -16,9 +21,7 @@ app.use(express.json());
 app.use('/api', messageRoutes);
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  res.status(500).json({ error: err.message });
-});
+app.use(errorHandler);
 
 // Start server
 const PORT = process.env.PORT || 5000;

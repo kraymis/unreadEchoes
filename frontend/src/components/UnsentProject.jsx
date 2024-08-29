@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Assuming you are using axios to send data to the backend
 import imgMail from '../assets/mail.png';
+import { submitMessage } from '../services/api'; // Import the API function
+
 
 const UnsentProject = () => {
     const [message, setMessage] = useState('');
     const [name, setName] = useState('');
-    const [selectedColor, setSelectedColor] = useState({ name: 'Black', hex: '#000000' }); // Default color is black
+    const [selectedColor, setSelectedColor] = useState({ name: 'Black', hex: '#000000' });
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     // Array of color objects with names and hex codes
     const colors = [
@@ -43,6 +47,7 @@ const UnsentProject = () => {
         { name: 'Peach', hex: '#fcd1a6' },
     ];
 
+
     const handleColorClick = (color) => {
         setSelectedColor(color);
     };
@@ -50,18 +55,22 @@ const UnsentProject = () => {
     const handleSubmit = async () => {
         if (message && name) {
             const data = {
-                name: name,
                 text: message,
-                color: selectedColor // Send the color object
+                color: selectedColor,
+                dateAdded: new Date(),
             };
 
             try {
-                // Replace with your backend API endpoint
-                const response = await axios.post('https://your-backend-api.com/submit-message', data);
-                console.log('Response:', response.data);
+                const response = await submitMessage(name.toLowerCase(), data);
+                setSuccess('Message submitted successfully!');
+                setMessage('');
+                setError('');
             } catch (error) {
-                console.error('Error submitting message:', error);
+                setError('Error submitting message. Please try again.');
+                setSuccess('');
             }
+        } else {
+            setError('Please enter both name and message.');
         }
     };
 
@@ -127,6 +136,10 @@ const UnsentProject = () => {
                     Submit Your Message
                 </button>
             </div>
+
+            {/* Display success or error messages */}
+            {error && <p className="text-red-500">{error}</p>}
+            {success && <p className="text-green-500">{success}</p>}
         </div>
     );
 };

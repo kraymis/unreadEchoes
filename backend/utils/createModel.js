@@ -14,6 +14,10 @@ const createMessageModel = (collectionName) => {
     color: {
       name: { type: String, required: true },
       hex: { type: String, required: true }
+    },
+    dateAdded: {
+      type: Date,
+      default: Date.now // Automatically sets the current date when a message is created
     }
   });
 
