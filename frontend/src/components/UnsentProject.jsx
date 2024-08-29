@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Assuming you are using axios to send data to the backend
 import imgMail from '../assets/mail.png';
 import { submitMessage } from '../services/api'; // Import the API function
-
 
 const UnsentProject = () => {
     const [message, setMessage] = useState('');
@@ -11,7 +9,6 @@ const UnsentProject = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    // Array of color objects with names and hex codes
     const colors = [
         { name: 'White', hex: '#FFFFFF' },
         { name: 'Light Gray', hex: '#a2a2a2' },
@@ -45,8 +42,7 @@ const UnsentProject = () => {
         { name: 'Magenta', hex: '#fda6fd' },
         { name: 'Hot Pink', hex: '#f978d1' },
         { name: 'Peach', hex: '#fcd1a6' },
-    ];
-
+      ];
 
     const handleColorClick = (color) => {
         setSelectedColor(color);
@@ -75,60 +71,58 @@ const UnsentProject = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center ">
-            <div className='flex gap-4'>
-                <div className=' h-[60vh] w-[25vw] border-4 p-1 border-black bg-white'>
+        <div className="flex flex-col items-center justify-center p-8 sm:p-4  lg:w-[45vw]">
+            <div className='flex flex-col lg:flex-row gap-2 w-full max-w-4xl '>
+                <div className='h-[45vh] lg:h-[70vh] w-full lg:w-[70%] border-4 p-2 border-black bg-white'>
                     <div className='h-[10%] flex justify-between items-center mb-1'>
                         <div className='flex justify-start gap-1 items-center w-[80%]'>
-                            <p className='text-white bg-black font-bold tracking-wide px-2'>ABC</p>
+                            <p className='text-white bg-black font-bold tracking-wide px-2 text-base sm:text-base md:text-base'>ABC</p>
                             <div className='flex items-center flex-grow'>
-                                <p className='font-semibold '>To:</p>
+                                <p className='font-semibold text-base sm:text-base md:text-base'>To:</p>
                                 <input
                                     type="text"
                                     placeholder="Enter Name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className="font-semibold tracking-wide border-none focus:outline-none h-full w-[90%] bg-transparent px-2"
+                                    className="font-semibold tracking-wide border-none focus:outline-none h-full w-[90%] bg-transparent px-2 text-base sm:text-base md:text-base"
                                 />
                             </div>
                         </div>
                         <div className='h-[3.5vh] w-auto flex justify-center items-center'>
-                            <img src={imgMail} alt='mail' className='h-full w-auto'/>
+                            <img src={imgMail} alt='mail' className='h-full w-auto' />
                         </div>
                     </div>
 
-                    <div className={`h-[82%] w-full overflow-auto text-xl p-2 `}>
+                    <div className='h-[85%] w-full overflow-auto text-4xl sm:text-4xl md:text-4xl blur-[0.4px] p-2 font-normal '>
                         <textarea
                             placeholder="Type Your Message Here..."
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
-                            className="w-full h-full p-2 text-white overflow-auto focus:outline-none"
+                            className="w-full h-full py-2 px-4 text-white overflow-auto focus:outline-none"
                             style={{ backgroundColor: selectedColor.hex }}
                         />
                     </div>
-                    
+
                     <div className='flex justify-between items-center'>
-                        <p className='font-bold tracking-wide'>Send</p>
-                        <p className='font-semibold tracking-wide'>#unreadechoes</p>
-                        <p className='font-bold tracking-wide'>Back</p>
-                    </div> 
+                        <p className='font-bold tracking-wide text-sm sm:text-sm md:text-base'>Send</p>
+                        <p className='font-semibold tracking-wide text-sm sm:text-sm md:text-base'>#unreadechoes</p>
+                        <p className='font-bold tracking-wide text-sm sm:text-sm md:text-base'>Back</p>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-2 mb-4">
+                <div className="grid grid-cols-4 gap-1 mb-4 lg:mb-0 w-full lg:w-[30%] ">
                     {colors.map((color, index) => (
                         <div
                             key={index}
                             className={`w-10 h-10 border-4 border-black cursor-pointer`}
-                            style={{
-                                backgroundColor: color.hex,
-                            }}
+                            style={{ backgroundColor: color.hex }}
                             onClick={() => handleColorClick(color)}
                         />
                     ))}
                 </div>
             </div>
 
-            <div className="bg-white w-full">
+            <div className="bg-white w-full mt-4">
                 <button
                     onClick={handleSubmit}
                     className="px-4 py-1 border-4 text-black border-black w-full font-bold text-lg tracking-wide"
@@ -137,9 +131,8 @@ const UnsentProject = () => {
                 </button>
             </div>
 
-            {/* Display success or error messages */}
-            {error && <p className="text-red-500">{error}</p>}
-            {success && <p className="text-green-500">{success}</p>}
+            {error && <p className="text-red-500 mt-2">{error}</p>}
+            {success && <p className="text-green-500 mt-2">{success}</p>}
         </div>
     );
 };

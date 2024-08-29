@@ -3,7 +3,7 @@ import imgMail from '../assets/mail.png';
 
 const MessageCard = ({ name, text, color }) => {
   return (
-      <div className=' h-[45vh] w-[20vw] border-4 p-1 border-black bg-white'>
+      <div className=' h-[60vh] w-[32%] border-4 p-1 border-black bg-white'>
         
             <div className='h-[10%] flex justify-between mb-1'>
                     <div className='flex justify-between items-center gap-2'>
@@ -15,14 +15,14 @@ const MessageCard = ({ name, text, color }) => {
                     </div>
             </div>
 
-            <div style={{ backgroundColor: color }} className={`h-[82%] w-full overflow-auto text-xl text-white font-medium p-2`}>
-            {text}
+            <div style={{ backgroundColor: color }} className={`h-[82%] w-full overflow-auto  py-2 px-4`}>
+            <p className='text-4xl text-white font-normal blur-[0.3px]'>{text}</p>
             </div>
             
-            <div className='flex justify-between items-center'>
-              <p className='font-bold tracking-wide'>Send</p>
-              <p className='font-semibold tracking-wide'>#unreadechoes</p>
-              <p className='font-bold tracking-wide'>Back</p>
+            <div className='flex justify-between items-center '>
+            <p className='font-bold tracking-wide '>Send</p>
+              <p className='font-semibold tracking-wide '>#unreadechoes</p>
+              <p className='font-bold tracking-wide '>Back</p>
             </div> 
       </div>
   );
